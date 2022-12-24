@@ -49,30 +49,30 @@ private:
 int main()
 {
     { // Calling a lambda without param
-        const auto ExampleLambda_1 = []
+        const auto Example_1 = []
         {
             std::cout << "Example 1" << std::endl;
         };
 
-        callFunctorParam_T(ExampleLambda_1);
+        callFunctorParam_T(Example_1);
     }
 
     { // Calling a lambda with params
-        const auto ExampleLambda_2 = [](const std::string& output_str)
+        const auto Example_2 = [](const std::string& output_str)
         {
             std::cout << output_str << std::endl;
         };
 
-        callFunctorParam_T(ExampleLambda_2, "Example 2");
+        callFunctorParam_T(Example_2, "Example 2");
     }
 
     { // Calling a lambda with params without using a template
-        const auto ExampleLambda_3 = [](const std::string& output_str)
+        const auto Example_3 = [](const std::string& output_str)
         {
             std::cout << output_str << std::endl;
         };
 
-        callFunctorParam(ExampleLambda_3);
+        callFunctorParam(Example_3);
     }
 
     { // Call a function from an object
