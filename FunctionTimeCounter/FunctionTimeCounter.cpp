@@ -8,7 +8,7 @@
 class TimeCounter
 {
 public:
-    TimeCounter() = default;
+    constexpr TimeCounter() = default;
 
     ~TimeCounter()
     {

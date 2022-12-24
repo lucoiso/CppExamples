@@ -6,7 +6,7 @@
 #include <functional>
 
 template<typename ArgTy, typename ...Args>
-void callFunctorParam_T(const ArgTy& arg, Args&& ...args)
+constexpr void callFunctorParam_T(const ArgTy& arg, Args&& ...args)
 {
     arg(std::forward<Args>(args)...);
 }
@@ -17,7 +17,7 @@ void callFunctorParam(std::function<void(const std::string&)> functor)
 }
 
 template<typename ObjectType, typename FunctorType, typename ...Args>
-void callFunctorParamFromObject(const ObjectType& object, const FunctorType& functor, Args&& ...args)
+constexpr void callFunctorParamFromObject(const ObjectType& object, const FunctorType& functor, Args&& ...args)
 {
     if constexpr (std::is_pointer<ObjectType>::value)
     {
@@ -32,15 +32,15 @@ void callFunctorParamFromObject(const ObjectType& object, const FunctorType& fun
 class ExampleClass
 {
 public:
-    ExampleClass() = delete;
-    ExampleClass(const std::string& object_name) : m_object_name(object_name) {}
+    constexpr ExampleClass() = delete;
+    constexpr ExampleClass(const std::string& object_name) : m_object_name(object_name) {}
 
-    ~ExampleClass() = default;
+    constexpr ~ExampleClass() = default;
 
     void printFromClass() const
     {
         std::cout << m_object_name << std::endl;
-    }
+    } 
 
 private:
     std::string m_object_name;
@@ -49,7 +49,7 @@ private:
 int main()
 {
     { // Calling a lambda without param
-        const auto Example_1 = []
+        constexpr auto Example_1 = []
         {
             std::cout << "Example 1" << std::endl;
         };
@@ -58,7 +58,7 @@ int main()
     }
 
     { // Calling a lambda with params
-        const auto Example_2 = [](const std::string& output_str)
+        constexpr auto Example_2 = [](const std::string& output_str)
         {
             std::cout << output_str << std::endl;
         };
@@ -67,7 +67,7 @@ int main()
     }
 
     { // Calling a lambda with params without using a template
-        const auto Example_3 = [](const std::string& output_str)
+        constexpr auto Example_3 = [](const std::string& output_str)
         {
             std::cout << output_str << std::endl;
         };
